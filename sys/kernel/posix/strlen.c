@@ -27,14 +27,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _POSIX_STRING_H_
-#define _POSIX_STRING_H_
+#include <string.h>
 
-#include <sys/types.h>
-
-size_t strlen(const char *str);
-void *memcpy(void *s1, const void *s2, size_t n);
-void *memset(void *ptr, uint8_t val, size_t length);
-int memcmp(const void *s1, const void *s2, size_t n);
-
-#endif
+size_t strlen(const char *str)
+{
+  size_t len = 0;
+  while (str[len++]);
+  return len - 1;
+}

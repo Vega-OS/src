@@ -27,14 +27,18 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _POSIX_STRING_H_
-#define _POSIX_STRING_H_
+#include <string.h>
 
-#include <sys/types.h>
+int memcmp(const void *s1, const void *s2, size_t n)
+{
+	if (n != 0) {
+		const unsigned char *p1 = s1, *p2 = s2;
 
-size_t strlen(const char *str);
-void *memcpy(void *s1, const void *s2, size_t n);
-void *memset(void *ptr, uint8_t val, size_t length);
-int memcmp(const void *s1, const void *s2, size_t n);
+		do {
+			if (*p1++ != *p2++)
+				return (*--p1 - *--p2);
+		} while (--n != 0);
+	}
 
-#endif
+	return (0);
+}
