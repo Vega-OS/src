@@ -33,6 +33,7 @@
 #include <sys/module.h>
 #include <sys/types.h>
 #include <mm/pmm.h>
+#include <firmware/acpi/core.h>
 
 #if defined(__x86_64__)
 # include <amd64/exceptions.h>
@@ -128,6 +129,7 @@ __dead void _start(void)
 
   pmm_init();
   arch_init();
+  acpi_init();
 
   for (;;)
   {
